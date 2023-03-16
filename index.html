@@ -7,93 +7,97 @@
     <title>scissors game</title>
 </head>
 <body>
-    <button onclick="game()">run Game!</button>
-</body>
-<script>
-    function getComputerChoice(){
-        console.log("computing");
-        let f= Math.floor(Math.random() *3);
-        let d="";
-        switch (f) {
-            case 0:
-                console.log("scissors")
-                d="scissors";
-                break;
-            case 1:
-                console.log("rock")
-                d="rock";
-                break;
-            case 2:
-                console.log("paper")    
-                d="paper";
-                break;
-            default:    
-                console.log("error")    
-                d=" ";
-                break;
-        }
-        return d;
-    }
-    function playRound(playerSelectionP, computerSelection){
-        let playerSelection=playerSelectionP.toLowerCase();
-        let out="";
-        if( playerSelection==="scissors" && computerSelection==="paper"){
-            out="you win!, you selected scissors,comp paper";            
-        }
-        if( playerSelection==="paper" && computerSelection==="paper"){            
-            out="tie!,you selected paper,comp paper";            
-        }
-        if( playerSelection==="rock" && computerSelection==="paper"){
-            out="you lose!,you selected rock,comp paper";                     
+    <div></div>
+    <script>
+        game();
+        function game(){
+            let playerSelection="";
+            
+                playerSelection=prompt("Insert: 'scissors','paper' or 'rock'");
+                if((playerSelection==="")||(playerSelection===null)){
+                    alert("error!!!!");
+                    return;                
+                }
+                if(
+                    (playerSelection.toLocaleLowerCase()==="scissors")||
+                    (playerSelection.toLocaleLowerCase()==="paper")||
+                    (playerSelection.toLocaleLowerCase()=="rock"))
+                    {run(playerSelection);}
+                else{
+                    alert("error!!!!");
+                    return;
+                }
+            return;
         }
 
-        if( playerSelection==="scissors" && computerSelection==="rock"){
-            out="you lose!,you selected scissors,comp rock";                     
+        function getComputerChoice(){
+            console.log("computing");
+            let f= Math.floor(Math.random() *3);
+            let d="";
+            switch (f) {
+                case 0:
+                    console.log("scissors")
+                    d="scissors";
+                    break;
+                case 1:
+                    console.log("rock")
+                    d="rock";
+                    break;
+                case 2:
+                    console.log("paper")    
+                    d="paper";
+                    break;
+                default:    
+                    console.log("error")    
+                    d=" ";
+                    break;
+            }
+            return d;
         }
-        if( playerSelection==="paper" && computerSelection==="rock"){
-            out="you win!,you selected paper,comp rock";
+        function playRound(playerSelectionP, computerSelection){
+            let playerSelection=playerSelectionP.toLowerCase();
+            let out="";
+            if( playerSelection==="scissors" && computerSelection==="paper"){
+                out="you win!, you selected scissors,comp paper";            
+            }
+            if( playerSelection==="paper" && computerSelection==="paper"){            
+                out="tie!,you selected paper,comp paper";            
+            }
+            if( playerSelection==="rock" && computerSelection==="paper"){
+                out="you lose!,you selected rock,comp paper";                     
+            }
+    
+            if( playerSelection==="scissors" && computerSelection==="rock"){
+                out="you lose!,you selected scissors,comp rock";                     
+            }
+            if( playerSelection==="paper" && computerSelection==="rock"){
+                out="you win!,you selected paper,comp rock";
+            }
+            if( playerSelection==="rock" && computerSelection==="rock"){
+                out="tie!,you selected rock,comp rock";                
+            }
+    
+            if( playerSelection==="scissors" && computerSelection==="scissors"){
+                out="tie!,you selected scissors,comp scissors";                
+            }
+            if( playerSelection==="paper" && computerSelection==="scissors"){
+                out="you lose!,,you selected paper,comp scissors";                     
+            }
+            if( playerSelection==="rock" && computerSelection==="scissors"){
+                out="you win!,you selected rock,comp scissors";
+            }
+            return out;
         }
-        if( playerSelection==="rock" && computerSelection==="rock"){
-            out="tie!,you selected rock,comp rock";                
+    
+        function run(playerSelection){
+            
+            const computerSelection=getComputerChoice();
+            console.log(playRound(playerSelection,computerSelection));
+            return 1;
         }
-
-        if( playerSelection==="scissors" && computerSelection==="scissors"){
-            out="tie!,you selected scissors,comp scissors";                
-        }
-        if( playerSelection==="paper" && computerSelection==="scissors"){
-            out="you lose!,,you selected paper,comp scissors";                     
-        }
-        if( playerSelection==="rock" && computerSelection==="scissors"){
-            out="you win!,you selected rock,comp scissors";
-        }
-        return out;
-    }
-
-    function run(playerSelection){
+    
         
-        const computerSelection=getComputerChoice();
-        console.log(playRound(playerSelection,computerSelection));
-        return 1;
-    }
+    </script>
+</body>
 
-    function game(){
-        let playerSelection="";
-        for(let i= 0; i<5;i++){
-            playerSelection=prompt("Insert: 'scissors','paper' or 'rock'");
-            if((playerSelection==="")||(playerSelection===null)){
-                alert("error!!!!");
-                break;
-            }
-            if(
-                (playerSelection.toLocaleLowerCase()==="scissors")||
-                (playerSelection.toLocaleLowerCase()==="paper")||
-                (playerSelection.toLocaleLowerCase()=="rock"))
-                {run(playerSelection);}
-            else{
-                alert("error!!!!");
-                break;
-            }
-        }
-    }
-</script>
 </html>
