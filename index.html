@@ -32,7 +32,6 @@
         }
         return d;
     }
-
     function playRound(playerSelectionP, computerSelection){
         let playerSelection=playerSelectionP.toLowerCase();
         let out="";
@@ -45,8 +44,7 @@
         if( playerSelection==="rock" && computerSelection==="paper"){
             out="you lose!,you selected rock,comp paper";                     
         }
-       }
-
+    }
         function getComputerChoice(){            
             let f= Math.floor(Math.random() *3);
             let d="";
@@ -103,8 +101,14 @@
                 out="you win!,you selected rock,comp scissors";
             }
             return out;
-        }   
-        
+        }
+    
+        function run(playerSelection){
+            
+            const computerSelection=getComputerChoice();
+            console.log(playRound(playerSelection,computerSelection));
+            return 1;
+        }    
        
 
     function game(){
@@ -124,7 +128,6 @@
                 alert("error!!!!");
                 return;
             }
-            return;
         
     }
 </script>
