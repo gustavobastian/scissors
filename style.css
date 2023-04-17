@@ -30,7 +30,7 @@ body{
     justify-content: center;
 
 }
-#result{
+#score{
     display:flex;
     flex-direction: row;
     align-items: center;

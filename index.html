@@ -10,17 +10,33 @@
 <body>
     
         <div class="buttons">
-            <button class="selectorbutton" onclick="playRound('rock')"  >rock</button>
-            <button class="selectorbutton" onclick="playRound('scissors')">scissors</button>
-            <button class="selectorbutton" onclick="playRound('paper')">paper</button>
+            <button class="selectorbutton" id="rock"  >rock</button>
+            <button class="selectorbutton" id="scissors">scissors</button>
+            <button class="selectorbutton" id="paper">paper</button>
         </div>
         
-        <div class="resultLabel">Result:</div>
-        <p id="result"> </p>
+        <div class="resultLabel">Score:<p id="Score"> </p></div>
+        <div class="resultLabel">Computer Score:<p id="computerScore"> </p></div>
+        
+        <p id="Result"> </p>
     
 </body>
 <script>
+    let score=0;
+    let scoreComputer=0;
+
+    function generatingListeners(){
     
+    let buttonElement1=document.getElementById("rock")
+    buttonElement1.addEventListener("click",playRound);
+
+    let buttonElement2=document.getElementById("scissors")
+    buttonElement2.addEventListener("click",playRound);
+
+    let buttonElement3=document.getElementById("paper")
+    buttonElement3.addEventListener("click",playRound);
+    }
+    generatingListeners();
     function getComputerChoice(){            
         let f= Math.floor(Math.random() *3);
         let d="";
@@ -44,43 +60,40 @@
         }
         return d;
     }
-    function playRound(playerSelectionP){
-        console.log("her:"+playerSelectionP)
+    function playRound(e){
+        let playerSelection=e.srcElement.id;
         let computerSelection=getComputerChoice();
-        let playerSelection=playerSelectionP.toLowerCase();
-        let out="";
+        
         if( playerSelection==="scissors" && computerSelection==="paper"){
-            out="you win!, you selected scissors,comp paper";            
-        }
-        if( playerSelection==="paper" && computerSelection==="paper"){            
-            out="tie!,you selected paper,comp paper";            
-        }
-        if( playerSelection==="rock" && computerSelection==="paper"){
-            out="you lose!,you selected rock,comp paper";                     
+            score++;           
+        }        
+        if( playerSelection==="rock" && computerSelection==="paper"){         
+            scoreComputer++;
         }
 
-        if( playerSelection==="scissors" && computerSelection==="rock"){
-            out="you lose!,you selected scissors,comp rock";                     
+        if( playerSelection==="scissors" && computerSelection==="rock"){            
+            scoreComputer++;
         }
         if( playerSelection==="paper" && computerSelection==="rock"){
             out="you win!,you selected paper,comp rock";
+            score++;
         }
         if( playerSelection==="rock" && computerSelection==="rock"){
             out="tie!,you selected rock,comp rock";                
-        }
-
-        if( playerSelection==="scissors" && computerSelection==="scissors"){
-            out="tie!,you selected scissors,comp scissors";                
+            score++;
         }
         if( playerSelection==="paper" && computerSelection==="scissors"){
-            out="you lose!,,you selected paper,comp scissors";                     
+            scoreComputer++;
         }
         if( playerSelection==="rock" && computerSelection==="scissors"){
-            out="you win!,you selected rock,comp scissors";
-        }
-        console.log(out);
-        let resultElement=document.getElementById('result');
-        resultElement.innerText=out;
+            score++;
+        }        
+        let resultElement=document.getElementById('Score');
+        resultElement.innerText=score;
+        let resultElement2=document.getElementById('computerScore');
+        resultElement2.innerText=scoreComputer;
+
+        return;
     }
 
     
