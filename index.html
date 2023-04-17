@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<body lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,6 +8,97 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
+<<<<<<< HEAD
+=======
+
+    <div></div>
+    <script>
+        game();
+        function game(){
+            let playerSelection="";
+            
+                playerSelection=prompt("Insert: 'scissors','paper' or 'rock'");
+                if((playerSelection==="")||(playerSelection===null)){
+                    alert("error!!!!");
+                    return;                
+                }
+                if(
+                    (playerSelection.toLocaleLowerCase()==="scissors")||
+                    (playerSelection.toLocaleLowerCase()==="paper")||
+                    (playerSelection.toLocaleLowerCase()=="rock"))
+                    {run(playerSelection);}
+                else{
+                    alert("error!!!!");
+                    return;
+                }
+            return;
+        }
+
+        function getComputerChoice(){            
+            let f= Math.floor(Math.random() *3);
+            let d="";
+            switch (f) {
+                case 0:
+                    console.log("scissors")
+                    d="scissors";
+                    break;
+                case 1:
+                    console.log("rock")
+                    d="rock";
+                    break;
+                case 2:
+                    console.log("paper")    
+                    d="paper";
+                    break;
+                default:    
+                    console.log("error")    
+                    d=" ";
+                    break;
+            }
+            return d;
+        }
+        function playRound(playerSelectionP, computerSelection){
+            let playerSelection=playerSelectionP.toLowerCase();
+            let out="";
+            if( playerSelection==="scissors" && computerSelection==="paper"){
+                out="you win!, you selected scissors,comp paper";            
+            }
+            if( playerSelection==="paper" && computerSelection==="paper"){            
+                out="tie!,you selected paper,comp paper";            
+            }
+            if( playerSelection==="rock" && computerSelection==="paper"){
+                out="you lose!,you selected rock,comp paper";                     
+            }
+    
+            if( playerSelection==="scissors" && computerSelection==="rock"){
+                out="you lose!,you selected scissors,comp rock";                     
+            }
+            if( playerSelection==="paper" && computerSelection==="rock"){
+                out="you win!,you selected paper,comp rock";
+            }
+            if( playerSelection==="rock" && computerSelection==="rock"){
+                out="tie!,you selected rock,comp rock";                
+            }
+    
+            if( playerSelection==="scissors" && computerSelection==="scissors"){
+                out="tie!,you selected scissors,comp scissors";                
+            }
+            if( playerSelection==="paper" && computerSelection==="scissors"){
+                out="you lose!,,you selected paper,comp scissors";                     
+            }
+            if( playerSelection==="rock" && computerSelection==="scissors"){
+                out="you win!,you selected rock,comp scissors";
+            }
+            return out;
+        }
+    
+        function run(playerSelection){
+            
+            const computerSelection=getComputerChoice();
+            console.log(playRound(playerSelection,computerSelection));
+            return 1;
+        }
+>>>>>>> 2b4a5fd0e841b78f4d4fecf31447e00f2c14a0af
     
         <div class="buttons">
             <button class="selectorbutton" id="rock"  >rock</button>
@@ -25,6 +116,7 @@
     let score=0;
     let scoreComputer=0;
 
+<<<<<<< HEAD
     function generatingListeners(){
     
     let buttonElement1=document.getElementById("rock")
@@ -100,4 +192,7 @@
 
     
 </script>
+=======
+
+>>>>>>> 2b4a5fd0e841b78f4d4fecf31447e00f2c14a0af
 </html>
