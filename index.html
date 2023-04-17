@@ -1,15 +1,45 @@
 <!DOCTYPE html>
-<body lang="en">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>scissors game</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
+    
+        <div class="buttons">
+            <button class="selectorbutton" id="rock"  >rock</button>
+            <button class="selectorbutton" id="scissors">scissors</button>
+            <button class="selectorbutton" id="paper">paper</button>
+        </div>
+        <div class="resultLine ">
+            <div class="resultLabel">Player score:</div><p id="Score"> </p>
+        </div>
+        <div class="resultLine ">
+            <div class="resultLabel">Computer score:</div><p id="computerScore"> </p>
+        </div>
+        <p id="Result"> </p>
+    
+</body>
 <script>
-    game();
-    function getComputerChoice(){        
+    let score=0;
+    let scoreComputer=0;
+
+    function generatingListeners(){
+    
+    let buttonElement1=document.getElementById("rock")
+    buttonElement1.addEventListener("click",playRound);
+
+    let buttonElement2=document.getElementById("scissors")
+    buttonElement2.addEventListener("click",playRound);
+
+    let buttonElement3=document.getElementById("paper")
+    buttonElement3.addEventListener("click",playRound);
+    }
+    generatingListeners();
+    function getComputerChoice(){            
         let f= Math.floor(Math.random() *3);
         let d="";
         switch (f) {
@@ -32,104 +62,57 @@
         }
         return d;
     }
-    function playRound(playerSelectionP, computerSelection){
-        let playerSelection=playerSelectionP.toLowerCase();
-        let out="";
+    function playRound(e){
+        let playerSelection=e.srcElement.id;
+        let computerSelection=getComputerChoice();
+        
         if( playerSelection==="scissors" && computerSelection==="paper"){
-            out="you win!, you selected scissors,comp paper";            
+            score++;           
+        }        
+        if( playerSelection==="rock" && computerSelection==="paper"){         
+            scoreComputer++;
         }
-        if( playerSelection==="paper" && computerSelection==="paper"){            
-            out="tie!,you selected paper,comp paper";            
-        }
-        if( playerSelection==="rock" && computerSelection==="paper"){
-            out="you lose!,you selected rock,comp paper";                     
-        }
-    }
-        function getComputerChoice(){            
-            let f= Math.floor(Math.random() *3);
-            let d="";
-            switch (f) {
-                case 0:
-                    console.log("scissors")
-                    d="scissors";
-                    break;
-                case 1:
-                    console.log("rock")
-                    d="rock";
-                    break;
-                case 2:
-                    console.log("paper")    
-                    d="paper";
-                    break;
-                default:    
-                    console.log("error")    
-                    d=" ";
-                    break;
-            }
-            return d;
-        }
-        function playRound(playerSelectionP, computerSelection){
-            let playerSelection=playerSelectionP.toLowerCase();
-            let out="";
-            if( playerSelection==="scissors" && computerSelection==="paper"){
-                out="you win!, you selected scissors,comp paper";            
-            }
-            if( playerSelection==="paper" && computerSelection==="paper"){            
-                out="tie!,you selected paper,comp paper";            
-            }
-            if( playerSelection==="rock" && computerSelection==="paper"){
-                out="you lose!,you selected rock,comp paper";                     
-            }
-    
-            if( playerSelection==="scissors" && computerSelection==="rock"){
-                out="you lose!,you selected scissors,comp rock";                     
-            }
-            if( playerSelection==="paper" && computerSelection==="rock"){
-                out="you win!,you selected paper,comp rock";
-            }
-            if( playerSelection==="rock" && computerSelection==="rock"){
-                out="tie!,you selected rock,comp rock";                
-            }
-    
-            if( playerSelection==="scissors" && computerSelection==="scissors"){
-                out="tie!,you selected scissors,comp scissors";                
-            }
-            if( playerSelection==="paper" && computerSelection==="scissors"){
-                out="you lose!,,you selected paper,comp scissors";                     
-            }
-            if( playerSelection==="rock" && computerSelection==="scissors"){
-                out="you win!,you selected rock,comp scissors";
-            }
-            return out;
-        }
-    
-        function run(playerSelection){
-            
-            const computerSelection=getComputerChoice();
-            console.log(playRound(playerSelection,computerSelection));
-            return 1;
-        }    
-       
 
-    function game(){
-        let playerSelection="";
-        
-            playerSelection=prompt("Insert: 'scissors','paper' or 'rock'");
-            if((playerSelection==="")||(playerSelection===null)){
-                alert("error!!!!");
-                return;
-            }
-            if(
-                (playerSelection.toLocaleLowerCase()==="scissors")||
-                (playerSelection.toLocaleLowerCase()==="paper")||
-                (playerSelection.toLocaleLowerCase()=="rock"))
-                {run(playerSelection);}
-            else{
-                alert("error!!!!");
-                return;
-            }
-        
+        if( playerSelection==="scissors" && computerSelection==="rock"){            
+            scoreComputer++;
+        }
+        if( playerSelection==="paper" && computerSelection==="rock"){            
+            score++;
+           }
+        if( playerSelection==="paper" && computerSelection==="scissors"){
+            scoreComputer++;
+        }
+        if( playerSelection==="rock" && computerSelection==="scissors"){
+            score++;
+        }        
+        let resultElement=document.getElementById('Score');
+        resultElement.innerText=score;
+        let resultElement2=document.getElementById('computerScore');
+        resultElement2.innerText=scoreComputer;
+
+        let resultElement3=document.getElementById('Result');
+        resultElement3.innerText=" ";
+
+        if(playerSelection===computerSelection){
+            resultElement3.innerText="Tie";
+        }
+        if(scoreComputer==5){
+            resultElement3.innerText="computer Wins, select any option for restart!";
+            score=0;
+            scoreComputer=0;
+        }
+        if(score==5){
+            resultElement3.innerText="player Wins, select any option for restart!";
+            score=0;
+            scoreComputer=0;
+        }
+
+
+        return;
     }
+
+    
+
+    
 </script>
-</body>
 </html>
